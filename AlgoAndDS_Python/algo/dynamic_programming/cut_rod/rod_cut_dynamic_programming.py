@@ -10,7 +10,6 @@ class RodCutDynamicProgramming:
         return self.__memoized_cut_rod_aux(prices, size, values)  
         
     def __memoized_cut_rod_aux(self, prices, size, values):
-        
         if values[size] != self.MIN_VALUE:
             return values[size]
         max_value = 0;
@@ -18,8 +17,7 @@ class RodCutDynamicProgramming:
             max_value = 0
         else:
             max_value = self.MIN_VALUE
-            for i in range(1, size+1):
-                print(size)
+            for i in range(1,size+1):
                 max_value = max(max_value, prices[i] + self.__memoized_cut_rod_aux(prices, size-i, values))
         values[size] = max_value
         return max_value
@@ -31,7 +29,6 @@ class RodCutDynamicProgramming:
             max_val = self.MIN_VALUE
             for j in range(i):
                 max_val = max(max_val, prices[j+1] + temp[i - j - 1])
-            print(max_val)
             temp[i] = max_val
         return temp[size-1]
         
@@ -44,7 +41,8 @@ class RodCutDynamicProgramming:
 # print(*prices, sep=",")
 # print("\n\n")
 
-prices = [0,1,5,8,9,10,17,17,20]
+# prices = [0,1,5,8,9,10,17,17,20]
+prices = [0,1,5,8,9,10,17,17,20,22,25,27,31,35,37]
 size = len(prices)
     
 rcdp = RodCutDynamicProgramming()
