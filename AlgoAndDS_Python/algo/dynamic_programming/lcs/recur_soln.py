@@ -7,6 +7,6 @@ def least_common_subsequence(str1, str2, len_str1, len_str2):
         return max(least_common_subsequence(str1, str2, len_str1-1, len_str2), 
                    least_common_subsequence(str1, str2, len_str1, len_str2-1)) 
         
-X = "AGGTAB"
-Y = "GXTXAYB"
+X = "character"
+Y = "retcarahc"
 print( "Length of LCS is ", least_common_subsequence(X , Y, len(X), len(Y)))
