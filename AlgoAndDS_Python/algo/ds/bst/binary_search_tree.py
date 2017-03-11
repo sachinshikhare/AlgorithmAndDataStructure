@@ -10,6 +10,7 @@ class BinarySearchTree:
     
     def __init__(self):
         self.root = None
+        self.data_string = ""
     
     def insert(self, data=None):
         new_node = BSTNode(data)
@@ -32,28 +33,32 @@ class BinarySearchTree:
     def in_order(self, node=None):
         if node != None:
             self.in_order(node.left)
-            print(node.data)
+            self.data_string += str(node.data) +", " 
             self.in_order(node.right)    
+        return self.data_string;
     
     def pre_order(self, node=None):
         if node != None:
-            print(node.data)
-            self.in_order(node.left)
-            self.in_order(node.right)    
+            self.data_string += str(node.data) +", "
+            self.pre_order(node.left)
+            self.pre_order(node.right)
+        return self.data_string;    
 
     def post_order(self, node=None):
         if node != None:
-            self.in_order(node.left)
-            self.in_order(node.right)
-            print(node.data)    
+            self.post_order(node.left)
+            self.post_order(node.right)
+            self.data_string += str(node.data) +", "
+        return self.data_string;
 
     def tree_walk(self, order):
+        self.data_string = ""
         if order == "IN":
-            self.in_order(self.root)
+            return self.in_order(self.root)
         elif order == "PRE": 
-            self.pre_order(self.root)
+            return self.pre_order(self.root)
         elif order == "POST": 
-            self.post_order(self.root)            
+            return self.post_order(self.root)            
             
     def __transplant(self, u, v):
         if u.parent == None:
@@ -97,16 +102,16 @@ class BinarySearchTree:
             current = self.root
             while current != None:
                 if current.data < data_node.data:
-                    current = current.left
-                elif current.data > data_node.data:
                     current = current.right
+                elif current.data > data_node.data:
+                    current = current.left
                 else:
                     return_node = current
                     break
         return return_node
             
     def search_data(self, data):
-        return self.__search_node(BSTNode(data)) == None
+        return self.__search_node(BSTNode(data)) != None
     
     def remove_data(self, data):
         data_node = self.__search_node(BSTNode(data))

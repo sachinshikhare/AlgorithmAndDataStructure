@@ -20,13 +20,13 @@ def insert_multiple():
         bst.insert(int(value))
 
 def in_order_tree_walk():
-    bst.tree_walk("IN")
+    print(bst.tree_walk("IN"))
     
 def pre_order_tree_walk():
-    bst.tree_walk("PRE")
+    print(bst.tree_walk("PRE"))
 
 def post_order_tree_walk():
-    bst.tree_walk("POST")
+    print(bst.tree_walk("POST"))
 
 def search_data():
     data = int(input("Enter data: "))
@@ -68,6 +68,8 @@ bst.insert(29)
 bst.insert(71)
 bst.insert(91)
 bst.insert(94)
+
+print("Data inserted: 25,11,13,12,51,61,81,72,99,54,1,7,14,21,27,92,9,29,71,91,94")
 
 options = {
         0: close,
