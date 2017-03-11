@@ -67,7 +67,7 @@ class BinarySearchTree:
             u.parent.left = v
         else:
             u.parent.right = v
-        if v.parent != None:
+        if v != None:
             v.parent = u.parent
 
 
@@ -82,6 +82,12 @@ class BinarySearchTree:
         return node
 
     def __delete_node(self, node):
+        if node.left == None and node.right == None:
+            if node == node.parent.left:
+                node.parent.left = None
+            else:
+                node.parent.right = None
+            return
         if node.left == None:
             self.__transplant(node, node.right)
         elif node.right == None:
