@@ -9,7 +9,7 @@ def close():
 def b_tree_insert():
     try:
         data = int(input("Enter data: "))
-        b_tree.b_tree_b_tree_insert(data)
+        b_tree.b_tree_insert(data)
     except ValueError:
         print("Invalid input, operation unsuccessful...")
 
@@ -17,7 +17,7 @@ def b_tree_insert_multiple():
     all_values = input("Enter all values (comma(,) separated): ")
     all_values_arr = all_values.split(",")
     for value in all_values_arr:
-        b_tree.b_tree_b_tree_insert(int(value))
+        b_tree.b_tree_insert(int(value))
         
 def search_element():
     try:
@@ -28,7 +28,10 @@ def search_element():
             print("Data not found")
     except ValueError:
         print("Invalid input, operation unsuccessful...")
-
+        
+def tree_traversel():
+    print("Traversal result: ", b_tree.tree_traversel())
+    
 b_tree.b_tree_insert(25)
 b_tree.b_tree_insert(11)
 b_tree.b_tree_insert(13)
@@ -57,7 +60,8 @@ options = {
         0: close,
         1: b_tree_insert,
         2: b_tree_insert_multiple,
-        3: search_element
+        3: search_element,
+        4: tree_traversel
 #         3: in_order_tree_walk,
 #         4: pre_order_tree_walk,
 #         5: post_order_tree_walk,
@@ -71,11 +75,12 @@ string = """            0: Exit
             1: Insert
             2: Insert Multiple
             3: Search data
+            4: Tree traversal
             \nEnter your option: """
 while(True):
     try:
         operation_index = int(input(string))
-        if operation_index < 0 or operation_index > 9:
+        if operation_index < 0 or operation_index > 4:
             raise ValueError()
         options[operation_index]()
     except ValueError:

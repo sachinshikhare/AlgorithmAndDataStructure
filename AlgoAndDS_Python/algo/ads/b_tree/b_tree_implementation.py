@@ -107,30 +107,61 @@ class BTree:
         else:
             return False
         
+
+    def __b_tree_traverse(self, x):
+        i = 0
+        if not x.leaf:
+            is_read = [False] * len(x.children)
+            while i <= x.elements_count-1:
+                if not is_read[i]:
+                    self.__b_tree_traverse(x.children[i])
+                    is_read[i] = True
+                self.result += str(x.elements[i]) + ","
+                if not is_read[i+1]:
+                    self.__b_tree_traverse(x.children[i+1])
+                    is_read[i+1] = True
+                i += 1
+        else:
+            while i <= x.elements_count-1:
+                self.result += str(x.elements[i]) + ","
+                i+=1
+        return self.result
+        
+    def tree_traversel(self):
+        self.result = ""
+        if self.root != None:
+            self.__b_tree_traverse(self.root)
+        return self.result
+        
         
 # b_tree =  BTree()
 # b_tree.b_tree_insert(25)
 # b_tree.b_tree_insert(11)
 # b_tree.b_tree_insert(13)
+# b_tree.tree_traversel()
 # b_tree.b_tree_insert(12)
 # b_tree.b_tree_insert(51)
 # b_tree.b_tree_insert(61)
 # b_tree.b_tree_insert(81)
+# b_tree.tree_traversel()
 # b_tree.b_tree_insert(72)
 # b_tree.b_tree_insert(99)
 # b_tree.b_tree_insert(54)
 # b_tree.b_tree_insert(1)
 # b_tree.b_tree_insert(7)
+# b_tree.tree_traversel()
 # b_tree.b_tree_insert(14)
 # b_tree.b_tree_insert(21)
 # b_tree.b_tree_insert(27)
 # b_tree.b_tree_insert(92)
 # b_tree.b_tree_insert(9)
 # b_tree.b_tree_insert(29)
+# b_tree.tree_traversel()
 # b_tree.b_tree_insert(71)
 # b_tree.b_tree_insert(91)
 # b_tree.b_tree_insert(94)
-# 
+# b_tree.tree_traversel()
+#  
 # print("Data inserted: 25,11,13,12,51,61,81,72,99,54,1,7,14,21,27,92,9,29,71,91,94")
 # 
 # print(b_tree.search_element(51))
