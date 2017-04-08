@@ -5,7 +5,7 @@ Created on 03-Apr-2017
 @author: sachin
 '''
 
-pi = lambda: list(map(int, input().split()))
+pi = lambda: arr(map(int, input().split()))
 
 arr = [[0]*6]*6
 

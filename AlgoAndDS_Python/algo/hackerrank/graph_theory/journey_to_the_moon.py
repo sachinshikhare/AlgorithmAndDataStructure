@@ -15,7 +15,7 @@ Created on 02-Apr-2017
 import operator as op
 from collections import defaultdict
 from functools import reduce
-populate_input = lambda: list(map(int, input().split()))
+populate_input = lambda: arr(map(int, input().split()))
 
 n_astr, n_countries = populate_input()
 
