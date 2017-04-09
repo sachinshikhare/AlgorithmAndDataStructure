@@ -17,12 +17,12 @@ from collections import defaultdict
 from functools import reduce
 populate_input = lambda: arr(map(int, input().split()))
 
-n_astr, n_countries = populate_input()
+n_astr, pairs = populate_input()
 
 graph = defaultdict(list)
 
 arr = [[0 for _ in range(n_astr)] for _ in range(n_astr)]
-for ctry_cntr in range(n_countries):
+for pair_cntr in range(pairs):
     i,j = populate_input()
     graph[i].append(j)
     graph[j].append(i)
@@ -48,7 +48,7 @@ def ncr(n, r):
 astr_in_ctry = []
 # def dfs(node):
 #     visited[node] = True
-#     astr_in_ctry[ctry_cntr] += 1
+#     astr_in_ctry[pair_cntr] += 1
 #     adj_node = get_adjucent_non_visited_node(node)
 #     if graph[node] and adj_node != -1:
 #             stack.append(node)
@@ -67,17 +67,17 @@ astr_in_ctry = []
 
 def dfs(node):
     visited[node] = True
-    astr_in_ctry[ctry_cntr] += 1
+    astr_in_ctry[pair_cntr] += 1
     for adj_node in graph[node]:
         if not visited[adj_node]:
             dfs(adj_node)
 
-ctry_cntr = 0
+pair_cntr = 0
 for i in range(n_astr):
     if not visited[i]:
         astr_in_ctry.append(0)
         dfs(i)
-        ctry_cntr += 1
+        pair_cntr += 1
         
 result = ncr(n_astr, 2)
 temp_result = 0
@@ -85,7 +85,7 @@ for val in astr_in_ctry:
     temp_result += ncr(val,2) 
     
 print(result - temp_result)
-# print(ctry_cntr)
+# print(pair_cntr)
 # print(astr_in_ctry)
 
 """

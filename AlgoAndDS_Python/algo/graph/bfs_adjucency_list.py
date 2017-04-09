@@ -16,11 +16,14 @@ class Vertex:
         return 
         
 class DFSAdjucencyList:
-    def __init__(self):
+    def __init__(self, is_directed_graph = True):
         self.graph = defaultdict(list)
+        self.is_directed_graph = is_directed_graph
 
     def add_edge(self, u, v):
         self.graph[u].append(v)
+        if not self.is_directed_graph:
+            self.graph[v].append(u)
         
     def dfs_traversel(self, source):
         
@@ -94,6 +97,26 @@ class DFSAdjucencyListTester:
             print(elem.identifier, elem.color, elem.distance)
             if elem.pi:
                 print(elem.pi.identifier)
-
+                
+    def test_3(self):
+        A = Vertex("A")
+        B = Vertex("B")
+        C = Vertex("C")
+        D = Vertex("D")
+        E = Vertex("E")
+        F = Vertex("F")
+        G = Vertex("G")
+        list_of_vertices = [A, B, C, D, E, F, G]
+        tester = DFSAdjucencyList(False)
+        tester.add_edge(A, B)
+        tester.add_edge(C, B)
+        tester.add_edge(D, B)
+        tester.add_edge(E, F)
+        tester.dfs_traversel(A)
+        print("----------------")
+        for elem in list_of_vertices:
+            print(elem.identifier, elem.color, elem.distance)
+            if elem.pi:
+                print(elem.pi.identifier)
         
-DFSAdjucencyListTester().test2()
+DFSAdjucencyListTester().test_3()
