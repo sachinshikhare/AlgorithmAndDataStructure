@@ -26,7 +26,6 @@ class DFSAdjucencyList:
             self.graph[v].append(u)
         
     def dfs_traversel(self, source):
-        
         queue = []
         source.color = VisitedStatus.GRAY
         print(source.identifier, "is", source.color)
